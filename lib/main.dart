@@ -25,6 +25,7 @@ class _WeatherAppState extends State<WeatherApp> {
     return MaterialApp(
       title: 'Weather App',
       theme: AppTheme.light(),
+      debugShowCheckedModeBanner: false,
       home: MultiBlocProvider(
         providers: [
           BlocProvider(
