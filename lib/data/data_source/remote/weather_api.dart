@@ -8,7 +8,7 @@ class WeatherApi {
 
   WeatherApi(this.dio);
 
-  Future<Map<String, dynamic>> fetchWeather(double lat, double lon) async {
+  Future<Response> fetchWeather(double lat, double lon) async {
     try {
       await dotenv.load();
       final apiKey = dotenv.env[Constants.apiKey];
@@ -22,11 +22,11 @@ class WeatherApi {
         },
       );
 
-      return response.data;
+      return response;
     } on DioException catch (e) {
       throw NetworkException.fromDioError(e);
     } catch(e) {
-      throw Exception('Failed to load weather data');
+      throw NetworkException.fromMessage('Failed to load weather data', null);
     }
   }
 }

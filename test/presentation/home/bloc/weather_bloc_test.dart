@@ -1,3 +1,4 @@
+import 'package:coopah_frontend_dev_task/core/data_wrapper.dart';
 import 'package:coopah_frontend_dev_task/core/enums.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -18,19 +19,27 @@ void main() {
   });
 
   group('WeatherBloc Tests', () {
-    final testWeather = Weather(
-        temperature: 20, cityName: 'Test City', main: MainWeatherType.clear);
+    final tWeather = Weather(
+      temperature: 20,
+      cityName: 'Test City',
+      main: MainWeatherType.clear,
+    );
+
+    final tWeatherDataWrapper = DataWrapper<Weather>(
+      data: tWeather,
+      error: null,
+    );
 
     blocTest<WeatherBloc, WeatherState>(
       'emits [WeatherLoading, WeatherLoadSuccess] '
       'when FetchWeather event is added and use case returns weather',
       build: () {
         when(() => mockFetchWeatherUseCase.execute(any(), any()))
-            .thenAnswer((_) async => testWeather);
+            .thenAnswer((_) async => tWeatherDataWrapper);
         return weatherBloc;
       },
       act: (bloc) => bloc.add(FetchWeather(lat: 0.0, lon: 0.0)),
-      expect: () => [WeatherLoading(), WeatherLoadSuccess(testWeather)],
+      expect: () => [WeatherLoading(), WeatherLoadSuccess(tWeather)],
     );
 
     blocTest<WeatherBloc, WeatherState>(

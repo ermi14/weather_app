@@ -1,3 +1,4 @@
+import 'package:coopah_frontend_dev_task/core/data_wrapper.dart';
 import 'package:coopah_frontend_dev_task/core/enums.dart';
 import 'package:coopah_frontend_dev_task/domain/entity/weather.dart';
 import 'package:coopah_frontend_dev_task/domain/repository/weather_repository.dart';
@@ -24,15 +25,20 @@ void main() {
     main: MainWeatherType.clear,
   );
 
+  final tWeatherDataWrapper = DataWrapper<Weather>(
+    data: tWeather,
+    error: null,
+  );
+
   test('should get weather for the given location from the repository',
       () async {
     when(
-      () => mockWeatherRepository.fetchWeather(tLatitude, tLongitude),
-    ).thenAnswer((_) async => tWeather);
+      () => mockWeatherRepository.fetchWeather(any(), any()),
+    ).thenAnswer((_) async => tWeatherDataWrapper);
 
     final result = await useCase.execute(tLatitude, tLongitude);
 
-    expect(result, tWeather);
+    expect(result, tWeatherDataWrapper);
     verify(
       () => mockWeatherRepository.fetchWeather(tLatitude, tLongitude),
     ).called(1);

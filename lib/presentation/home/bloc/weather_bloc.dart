@@ -15,11 +15,15 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     on<FetchWeather>((event, emit) async {
       emit(WeatherLoading());
       try {
-        final Weather weather = await fetchWeatherUseCase.execute(
+        final response = await fetchWeatherUseCase.execute(
           event.lat,
           event.lon,
         );
-        emit(WeatherLoadSuccess(weather));
+        if (response.data != null && response.data is Weather) {
+          emit(WeatherLoadSuccess(response.data!));
+        } else if (response.error != null) {
+          emit(WeatherLoadFailure(response.error!.message));
+        }
       } on NetworkException catch (e) {
         emit(WeatherLoadFailure(e.message));
       } catch (e) {

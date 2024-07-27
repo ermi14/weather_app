@@ -50,6 +50,11 @@ class NetworkException extends Equatable implements Exception {
     }
   }
 
+  NetworkException.fromMessage(String msg, int? stCode) {
+    message = msg;
+    statusCode = stCode;
+  }
+
   @override
   List<Object?> get props => [message, statusCode];
 }

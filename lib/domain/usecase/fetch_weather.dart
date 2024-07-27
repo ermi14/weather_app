@@ -1,8 +1,9 @@
+import 'package:coopah_frontend_dev_task/core/data_wrapper.dart';
 import 'package:coopah_frontend_dev_task/domain/entity/weather.dart';
 import 'package:coopah_frontend_dev_task/domain/repository/weather_repository.dart';
 
 abstract class FetchWeatherUseCase {
-  Future<Weather> execute(double lat, double lon);
+  Future<DataWrapper<Weather>> execute(double lat, double lon);
 }
 
 class FetchWeatherUseCaseImpl implements FetchWeatherUseCase {
@@ -11,7 +12,7 @@ class FetchWeatherUseCaseImpl implements FetchWeatherUseCase {
   FetchWeatherUseCaseImpl(this.repository);
 
   @override
-  Future<Weather> execute(double lat, double lon) async {
+  Future<DataWrapper<Weather>> execute(double lat, double lon) async {
     try {
       return await repository.fetchWeather(lat, lon);
     } catch (e) {
