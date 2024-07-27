@@ -3,7 +3,7 @@ import 'package:coopah_frontend_dev_task/core/enums.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:bloc_test/bloc_test.dart';
-import 'package:coopah_frontend_dev_task/domain/usecase/fetch_weather.dart';
+import 'package:coopah_frontend_dev_task/domain/usecase/fetch_weather_usecase.dart';
 import 'package:coopah_frontend_dev_task/presentation/home/bloc/weather_bloc.dart';
 import 'package:coopah_frontend_dev_task/domain/entity/weather.dart';
 

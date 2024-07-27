@@ -1,8 +1,9 @@
 import 'package:coopah_frontend_dev_task/core/network_exception.dart';
+import 'package:coopah_frontend_dev_task/core/report_error.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:coopah_frontend_dev_task/domain/entity/weather.dart';
-import 'package:coopah_frontend_dev_task/domain/usecase/fetch_weather.dart';
+import 'package:coopah_frontend_dev_task/domain/usecase/fetch_weather_usecase.dart';
 
 part 'weather_event.dart';
 
@@ -24,9 +25,11 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
         } else if (response.error != null) {
           emit(WeatherLoadFailure(response.error!.message));
         }
-      } on NetworkException catch (e) {
+      } on NetworkException catch (e, stackTrace) {
+        ReportError.reportErrorSentry(e, stackTrace);
         emit(WeatherLoadFailure(e.message));
-      } catch (e) {
+      } catch (e, stackTrace) {
+        ReportError.reportErrorSentry(Exception(e.toString()), stackTrace);
         emit(WeatherLoadFailure(e.toString()));
       }
     });

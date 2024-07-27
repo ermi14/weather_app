@@ -2,7 +2,7 @@ import 'package:coopah_frontend_dev_task/core/data_wrapper.dart';
 import 'package:coopah_frontend_dev_task/core/enums.dart';
 import 'package:coopah_frontend_dev_task/domain/entity/weather.dart';
 import 'package:coopah_frontend_dev_task/domain/repository/weather_repository.dart';
-import 'package:coopah_frontend_dev_task/domain/usecase/fetch_weather.dart';
+import 'package:coopah_frontend_dev_task/domain/usecase/fetch_weather_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
