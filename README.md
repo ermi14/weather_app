@@ -1,16 +1,16 @@
-# coopah_frontend_dev_task
+# Weather App
 
-A new Flutter project.
+## Setup Instructions for 
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. **Add .env file
+   Add .env file in the root directory
+2. **Add Weather API Key**:  
+   Add your Weather API key to the `.env` file as OPEN_WEATHER_MAP_API_KEY
+3. **Add Sentry DSN**:  
+   Add your Sentry DSN to the `.env` file as SENTRY_DSN
+4. **Install dependencies**:  
+   Run `flutter pub get` to install the required dependencies
+5. **Run the app**:  
+   Run `flutter run` to run the app on your local machine
+6. **Run tests**:  
+   Run `flutter test` to run the tests
